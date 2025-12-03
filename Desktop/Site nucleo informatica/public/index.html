@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Núcleo de Engenharia Informática</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/css/styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="#top">Núcleo EI</a>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" aria-label="Principal">
+          <ul>
+            <li><a href="#quem">Quem somos</a></li>
+            <li><a href="#fazemos">O que fazemos</a></li>
+            <li><a href="#noticias">Notícias</a></li>
+            <li><a href="#contactos" class="cta">Contacte-nos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <h1 class="reveal-on-scroll">Núcleo de Engenharia Informática</h1>
+          <p class="lead reveal-on-scroll">Eventos, projetos e comunidade — sempre com energia e cor.</p>
+          <div class="hero-actions reveal-on-scroll">
+            <a href="#noticias" class="btn primary">Próximos eventos</a>
+            <a href="#contactos" class="btn">Junta-te a nós</a>
+          </div>
+        </div>
+        <div class="bg-animated"></div>
+      </section>
+
+      <section id="quem" class="section">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll">Quem somos</h2>
+          <p class="section-subtitle reveal-on-scroll">Conhece a equipa e o nosso propósito.</p>
+          <div class="grid team-grid">
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei1/360/360" alt="Ana Silva" loading="lazy" />
+              <div class="card-body">
+                <h3>Ana Silva</h3>
+                <p>Presidente</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei2/360/360" alt="Bruno Costa" loading="lazy" />
+              <div class="card-body">
+                <h3>Bruno Costa</h3>
+                <p>Vice-Presidente</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei3/360/360" alt="Carla Mendes" loading="lazy" />
+              <div class="card-body">
+                <h3>Carla Mendes</h3>
+                <p>Comunicação</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei4/360/360" alt="Daniel Rocha" loading="lazy" />
+              <div class="card-body">
+                <h3>Daniel Rocha</h3>
+                <p>Eventos</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei5/360/360" alt="Eduardo Pereira" loading="lazy" />
+              <div class="card-body">
+                <h3>Eduardo Pereira</h3>
+                <p>Tesoureiro</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei6/360/360" alt="Filipa Santos" loading="lazy" />
+              <div class="card-body">
+                <h3>Filipa Santos</h3>
+                <p>Secretária</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei7/360/360" alt="Hugo Almeida" loading="lazy" />
+              <div class="card-body">
+                <h3>Hugo Almeida</h3>
+                <p>Projetos</p>
+              </div>
+            </article>
+            <article class="card reveal-on-scroll">
+              <img src="https://picsum.photos/seed/ei8/360/360" alt="Inês Ferreira" loading="lazy" />
+              <div class="card-body">
+                <h3>Inês Ferreira</h3>
+                <p>Design</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="fazemos" class="section alt">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll">O que fazemos</h2>
+          <p class="section-subtitle reveal-on-scroll">Workshops, hackathons, talks e convívios académicos.</p>
+          <div class="grid features-grid">
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient"></div>
+              <h3>Workshops</h3>
+              <p>Aprendizagem prática em tecnologias atuais.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient"></div>
+              <h3>Hackathons</h3>
+              <p>Desafios intensos para criar soluções.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient"></div>
+              <h3>Talks</h3>
+              <p>Oradores convidados e partilha de conhecimento.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient"></div>
+              <h3>Comunidade</h3>
+              <p>Atividades sociais e networking.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="noticias" class="section">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll">Notícias</h2>
+          <p class="section-subtitle reveal-on-scroll">Próximos eventos e novidades.</p>
+          <div class="news-controls reveal-on-scroll">
+            <button class="btn small" id="filter-all">Tudo</button>
+            <button class="btn small" id="filter-soon">Mais breves</button>
+          </div>
+          <div class="news-list" id="news-list"></div>
+        </div>
+      </section>
+
+      <section id="contactos" class="section alt">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll">Contacte-nos</h2>
+          <p class="section-subtitle reveal-on-scroll">Email, redes sociais e links úteis.</p>
+          <div class="contact-grid">
+            <a class="contact-card reveal-on-scroll" href="mailto:ni@ufp.edu.pt">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M2 6h20v12H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </span>
+              <span>Email</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://www.instagram.com/universidadefernandopessoa/" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" /></svg>
+              </span>
+              <span>Instagram</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://pt.linkedin.com/school/universidade-fernando-pessoa/" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="6" height="18" fill="currentColor"/><rect x="10" y="10" width="11" height="11" fill="currentColor"/><circle cx="6" cy="6" r="3" fill="currentColor"/></svg>
+              </span>
+              <span>LinkedIn</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://www.youtube.com/@UniversidadeFernandoPessoaUFP" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><polygon points="10,9 16,12 10,15" fill="#fff"/></svg>
+              </span>
+              <span>YouTube</span>
+            </a>
+          </div>
+
+          <div class="links-uteis reveal-on-scroll">
+            <a href="https://www.ufp.pt/" target="_blank" rel="noopener" class="link-pill">Universidade</a>
+            <a href="/parceiros.html" class="link-pill">Parceiros</a>
+            <a href="/eventos.html" class="link-pill">Eventos</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© Núcleo de Engenharia Informática</p>
+      </div>
+    </footer>
+
+    <script type="module" src="../src/js/script.js"></script>
+  </body>
+  </html>
