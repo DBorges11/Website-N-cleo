@@ -13,7 +13,8 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
 function sortByDateAsc(list) { return [...list].sort((a, b) => new Date(a.date) - new Date(b.date)); }
-function formatDate(dateStr) { const d = new Date(dateStr); return d.toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' }); }
+function formatDate(dateStr) { if (!dateStr) return 'Sem data anunciada'; const d = new Date(dateStr); return d.toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' }); }
+function getMeta(ev) { const now = new Date(); if (!ev.date || ev.status === 'no_date') return 'Sem data anunciada'; const d = new Date(ev.date); return d > now ? `Brevemente · ${ev.location}` : `${formatDate(ev.date)} · ${ev.location}`; }
 
 function renderAgenda(list, selectedId) {
   const root = document.getElementById('eventos-lista');
@@ -42,16 +43,37 @@ function renderDetail(ev) {
   if (!ev) { return; }
   const wrap = document.createElement('div');
   wrap.className = 'card';
-  const img = document.createElement('img'); img.className = 'news-cover'; img.src = ev.cover; img.alt = ev.title; img.loading = 'lazy';
   const body = document.createElement('div'); body.className = 'news-body';
   const h2 = document.createElement('h2'); h2.className = 'section-title'; h2.textContent = ev.title;
-  const meta = document.createElement('div'); meta.className = 'news-meta'; meta.textContent = `${formatDate(ev.date)} · ${ev.location}`;
-  const p = document.createElement('p'); p.textContent = ev.desc;
+  const meta = document.createElement('div'); meta.className = 'news-meta'; meta.textContent = getMeta(ev);
+
+  const allImgs = [ev.cover, ...(Array.isArray(ev.images) ? ev.images : [])].filter((v, i, a) => a.indexOf(v) === i);
+  const mainImg = document.createElement('img'); mainImg.className = 'event-main'; mainImg.src = allImgs[0]; mainImg.alt = ev.title; mainImg.loading = 'lazy';
+  mainImg.onerror = () => { const s = mainImg.src; if (s.endsWith('.jpg')) mainImg.src = s.replace('.jpg', '.jpeg'); else if (s.endsWith('.jpeg')) mainImg.src = s.replace('.jpeg', '.png'); else if (s.endsWith('.png')) mainImg.src = s.replace('.png', '.jpg'); };
+  wrap.appendChild(mainImg);
+
+  const thumbs = document.createElement('div'); thumbs.className = 'event-thumbs';
+  allImgs.forEach((src, idx) => {
+    const t = document.createElement('img'); t.src = src; t.alt = ev.title; t.loading = 'lazy';
+    t.onerror = () => { const s = t.src; if (s.endsWith('.jpg')) t.src = s.replace('.jpg', '.jpeg'); else if (s.endsWith('.jpeg')) t.src = s.replace('.jpeg', '.png'); else if (s.endsWith('.png')) t.src = s.replace('.png', '.jpg'); };
+    if (idx === 0) t.classList.add('active');
+    t.addEventListener('click', () => { mainImg.src = src; Array.from(thumbs.children).forEach(c => c.classList.remove('active')); t.classList.add('active'); });
+    thumbs.appendChild(t);
+  });
+
+  const lb = document.createElement('div'); lb.className = 'lightbox'; const lbImg = document.createElement('img'); lb.appendChild(lbImg); document.body.appendChild(lb);
+  mainImg.addEventListener('click', () => { lbImg.src = mainImg.src; lb.classList.add('open'); });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+
+  body.appendChild(h2);
+  body.appendChild(meta);
+  body.appendChild(thumbs);
+  (ev.desc || '').split(/\n\n+/).forEach(txt => { const p = document.createElement('p'); p.textContent = txt; body.appendChild(p); });
   const actions = document.createElement('div'); actions.className = 'news-actions';
   const back = document.createElement('a'); back.href = './index.html#noticias'; back.className = 'btn small'; back.textContent = 'Voltar às notícias';
   actions.appendChild(back);
-  body.appendChild(h2); body.appendChild(meta); body.appendChild(p); body.appendChild(actions);
-  wrap.appendChild(img); wrap.appendChild(body);
+  body.appendChild(actions);
+  wrap.appendChild(body);
   root.appendChild(wrap);
 }
 
