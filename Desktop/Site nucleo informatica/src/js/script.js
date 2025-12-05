@@ -74,6 +74,16 @@ function renderEvents(list) {
       badge.textContent = 'Notícia';
       card.appendChild(badge);
     }
+    const now = new Date();
+    const isNews = ev.type === 'news';
+    const isNoDate = !ev.date || ev.status === 'no_date';
+    const isFuture = !isNews && ev.date && new Date(ev.date) > now;
+    if (!isNews && (isFuture || isNoDate)) {
+      const statusBadge = document.createElement('span');
+      statusBadge.className = `badge badge-overlay badge-lg ${isFuture ? 'badge-upcoming' : 'badge-tba'}`;
+      statusBadge.textContent = isFuture ? 'Brevemente' : 'Sem data anunciada';
+      card.appendChild(statusBadge);
+    }
     const h3 = document.createElement('h3');
     h3.className = 'news-title';
     h3.textContent = ev.title;
@@ -87,8 +97,9 @@ function renderEvents(list) {
     actions.className = 'news-actions';
     const btn = document.createElement('a');
     btn.href = ev.type === 'news' ? (ev.external || '#') : `/eventos.html?id=${ev.id}`;
-    btn.className = 'btn small';
+    btn.className = ev.type === 'news' ? 'link-news' : 'btn small';
     btn.textContent = 'Saber mais';
+    if (ev.type === 'news') { btn.target = '_blank'; btn.rel = 'noopener'; }
     actions.appendChild(btn);
     body.appendChild(h3);
     body.appendChild(meta);
@@ -133,7 +144,16 @@ document.getElementById('filter-past').addEventListener('click', () => {
     const now = new Date();
     return d < now;
   });
-  renderEvents(past.length ? past : events);
+  const root = document.getElementById('news-list');
+  if (!past.length) {
+    root.innerHTML = '';
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Não existem eventos passados disponíveis.';
+    root.appendChild(empty);
+    return;
+  }
+  renderEvents(past);
 });
 
 const sections = ['quem', 'fazemos', 'noticias', 'contactos'];

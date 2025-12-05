@@ -91,6 +91,7 @@ body {
 .news-list .news-body p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;line-clamp: 3; }
 .news-meta { color: var(--muted); font-size: 14px; }
 .news-actions { display: flex; gap: 8px; }
+.link-news { background: transparent; border: 0; padding: 0; color: var(--bg-2); text-decoration: underline; font-weight: 600; height: auto; }
 
 .contact-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -126,6 +127,9 @@ body {
 .badge { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; line-height: 1; border: 1px solid var(--border); background: var(--surface-strong); }
 .badge-news { background: #ffd66e; border-color: rgba(12,16,32,0.1); }
 .badge-overlay { position: absolute; top: 8px; left: 8px; }
+.badge-lg { font-size: 13px; padding: 6px 10px; }
+.badge-upcoming { background: var(--bg-2); color: #fff; }
+.badge-tba { background: #7aa2ff; border-color: var(--border); color: #fff; }
 
 /* Parallax layers */
 /* parallax removed */
