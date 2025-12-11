@@ -31,7 +31,25 @@ O Porto Tech Hub é um evento de referência na área da tecnologia e da inovaç
 Para a Universidade Fernando Pessoa, estas experiências fora da sala de aula são fundamentais para desenvolver competências técnicas e humanas, estimular o pensamento crítico e preparar os futuros engenheiros informáticos para os desafios do mercado.
 
 “Na UFP acreditamos que ensinar é inspirar mentes para criar o futuro. Continuaremos a proporcionar experiências que aproximam o ensino da inovação, o saber da prática e a universidade da sociedade”, destaca Christophe Soares, coordenador da licenciatura de Engenharia Informática.` },
-  { id: 'docker', title: 'Tech Talk: Docker Essentials', date: '2025-12-12', location: 'Sala 1.4', cover: 'https://picsum.photos/seed/docker/640/360', link: '', desc: 'Talk introdutória sobre containers, imagens e deploy moderno. Vamos discutir porque o uso de containers melhora a portabilidade e consistência entre ambientes, com exemplos práticos e dicas para começar. A sessão acontece na Sala 1.4 com tempo para perguntas. Inclui demonstração de construção de imagens e boas práticas de publicação.' },
+  { id: 'santotirso', title: 'Viver + Ciência e Tecnologia', date: '2025-11-18', location: 'Fábrica de Santo Thyrso', cover: '/images/evento_santo_tirso.jpg',
+    images: [
+      '/images/evento_santo_tirso.jpg',
+      '/images/evento_santo_tirso_2.jpg',
+      '/images/evento_santo_tirso_3.jpg',
+      '/images/evento_santo_tirso_4.jpg'
+    ],
+    link: '',
+    desc: `💡 A Universidade Fernando Pessoa marcou presença na III Edição da iniciativa “Viver + Ciência e Tecnologia”, que decorreu no passado dia 18 de novembro, na Nave Cultural da Fábrica de Santo Thyrso.
+
+A Universidade esteve representada pelas coordenações do 1.º e 2.º ciclos de estudos em Engenharia Informática, por docentes e por alunos do Núcleo de Engenharia Informática, num evento que promoveu o contacto direto entre a academia e os jovens do ensino secundário.
+
+Um agradecimento especial aos estudantes Diogo Borges e Rafael Tavares, que representaram o Núcleo de Informática e estudantes, partilhando a sua experiência e demonstrando o potencial das novas tecnologias, em especial nas áreas da inteligência artificial, visão computacional e programação.
+
+Esta iniciativa foi uma oportunidade inspiradora para aproximar os futuros estudantes do mundo da Engenharia Informática, reforçando o papel da Universidade Fernando Pessoa como uma instituição moderna, inovadora e comprometida com a transformação digital da sociedade.
+
+Felicitamos a Câmara Municipal de Santo Tirso pela organização e deixamos um agradecimento à Vereadora Silvia Tavares pelo apoio e pela visão em promover a ciência e a tecnologia junto das novas gerações.
+
+A Engenharia Informática da UFP distingue-se pela sua forte componente prática, ligação ao tecido empresarial e formação de profissionais capazes de criar soluções tecnológicas com impacto real. Mais do que um curso, é um espaço onde se forma o futuro! 🚀` },
   { id: 'natal', title: 'Convívio de Natal', date: '2025-12-20', location: 'Bar Académico', cover: 'https://picsum.photos/seed/natal/640/360', link: '', desc: 'Encontro festivo do núcleo para celebrar o final do semestre. Haverá atividades descontraídas, jogos e oportunidade de reforçar laços entre colegas. O convívio realiza-se no Bar Académico, com surpresas e momentos de partilha. Há espaço para conversas informais e networking entre estudantes de diferentes anos.' },
   { id: 'ia', title: 'Tech Talk: IA Generativa', date: '2026-01-05', location: 'Sala 1.4', cover: 'https://picsum.photos/seed/ia/640/360', link: '', desc: 'Sessão sobre tendências atuais da IA generativa, casos de uso e implicações éticas. Iremos falar da importância do uso responsável destas ferramentas e como podem apoiar projetos académicos. Realiza-se na Sala 1.4 com demonstrações e referências. Inclui debate sobre impactos na indústria e investigação.' },
   { id: 'web', title: 'Bootcamp Web Full‑Stack', date: '2026-01-10', location: 'Laboratório 3', cover: 'https://picsum.photos/seed/web/640/360', link: '', desc: 'Formação intensiva cobrindo frontend e backend com práticas guiadas. A importância de arquiteturas bem definidas e testes será abordada, com exercícios práticos em laboratório. O bootcamp decorre no Laboratório 3, em dois dias consecutivos. Terminamos com um mini‑projeto integrador e feedback detalhado.' },
