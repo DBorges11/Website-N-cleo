@@ -3,14 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Eventos — Núcleo de Engenharia Informática</title>
+    <title>Quem somos — Núcleo de Engenharia Informática</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/eventos-wocjAWzU.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/styles-D0Ta5eaf.js">
-    <link rel="modulepreload" crossorigin href="/assets/events-Cp36FzaG.js">
-    <link rel="stylesheet" crossorigin href="/assets/styles-SCOB7U3k.css">
+    <link rel="stylesheet" href="../src/css/styles.css" />
   </head>
   <body>
     <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
@@ -22,10 +19,11 @@
         </button>
         <nav class="site-nav" aria-label="Principal">
           <ul>
-            <li><a href="/quem.html">Quem somos</a></li>
-            <li><a href="/index.html#fazemos">O que fazemos</a></li>
-            <li><a href="/index.html#noticias">Notícias</a></li>
-            <li><a href="/index.html#contactos" class="cta">Contacte-nos</a></li>
+            <li><a href="/quem.html" class="active" data-i18n="nav.quem">Quem somos</a></li>
+            <li><a href="/index.html#fazemos" data-i18n="nav.fazemos">O que fazemos</a></li>
+            <li><a href="/index.html#noticias" data-i18n="nav.noticias">Notícias</a></li>
+            <li><a href="/index.html#contactos" class="cta" data-i18n="nav.contactos">Contacte-nos</a></li>
+            <li><button id="lang-toggle" class="btn small">PT/EN</button></li>
           </ul>
         </nav>
       </div>
@@ -34,10 +32,9 @@
     <main>
       <section class="section">
         <div class="container">
-          <h2 class="section-title reveal-on-scroll">Evento</h2>
-          <div id="evento-detalhe" class="evento-detail reveal-on-scroll"></div>
-          <h3 class="section-title">Outros eventos</h3>
-          <div class="news-list" id="eventos-lista"></div>
+          <h2 class="section-title reveal-on-scroll" data-i18n="page.quem.title">Quem somos</h2>
+          <p class="section-subtitle reveal-on-scroll" data-i18n="page.quem.subtitle">Membros do núcleo — substitui com os nomes e fotos reais.</p>
+          <div class="grid team-grid" id="team-lista"></div>
         </div>
       </section>
     </main>
@@ -48,5 +45,6 @@
       </div>
     </footer>
 
+    <script type="module" src="../src/js/quem.js"></script>
   </body>
   </html>

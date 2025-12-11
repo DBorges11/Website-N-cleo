@@ -18,6 +18,113 @@ document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el
 
 import { events } from './events.js';
 
+const i18n = {
+  pt: {
+    'nav.quem': 'Quem somos',
+    'nav.fazemos': 'O que fazemos',
+    'nav.sobre': 'Sobre',
+    'nav.noticias': 'Notícias',
+    'nav.contactos': 'Contacte-nos',
+    'hero.title': 'Nucleo De Engenharia Informatica da Universidade Fernando Pessoa',
+    'section.fazemos.title': 'O que fazemos',
+    'section.fazemos.sub': 'Workshops, hackathons, talks e convívios académicos.',
+    'features.workshops.title': 'Workshops',
+    'features.workshops.desc': 'Aprendizagem prática em tecnologias atuais.',
+    'features.hackathons.title': 'Hackathons',
+    'features.hackathons.desc': 'Desafios intensos para criar soluções.',
+    'features.talks.title': 'Talks',
+    'features.talks.desc': 'Oradores convidados e partilha de conhecimento.',
+    'features.comunidade.title': 'Comunidade',
+    'features.comunidade.desc': 'Atividades sociais e networking.',
+    'section.sobre.title': 'Sobre',
+    'section.sobre.text': 'A Engenharia Informática, ou Engenharia de Computadores, é um campo da engenharia dedicado ao projeto, desenvolvimento e manutenção de sistemas de hardware e software. É a área responsável pela criação de toda a tecnologia que nos rodeia, desde aplicações móveis e websites a sistemas de gestão empresarial, inteligência artificial e robótica, abrangendo conhecimentos de programação, bases de dados, redes de comunicação, algoritmos e arquitetura de computadores. O engenheiro informático é o profissional que transforma ideias complexas em soluções tecnológicas funcionais.\n\nO curso de Engenharia Informática oferece vantagens significativas no mercado de trabalho atual. Uma das principais é a elevada empregabilidade, sendo uma das áreas com maior taxa de emprego e mais resiliente a crises, com uma procura constante por profissionais qualificados. Adicionalmente, os salários são geralmente competitivos devido à alta procura e à especialização técnica.\n\nA diversidade de carreiras é outro ponto forte, pois a formação permite a especialização em áreas como Cibersegurança, Desenvolvimento de Jogos, Cloud Computing, Data Science ou Inteligência Artificial. Por ser uma profissão moderna, oferece muitas vezes a possibilidade de trabalho remoto e flexibilidade de horários, facilitando o equilíbrio entre a vida pessoal e profissional. Por fim, as competências adquiridas são universais, permitindo uma carreira global e a oportunidade de trabalhar continuamente com tecnologias de ponta e participar ativamente na inovação.',
+    'stats.empregabilidade': 'Taxa de empregabilidade',
+    'stats.parceiros': 'Empresas parceiras',
+    'section.noticias.title': 'Notícias',
+    'section.noticias.sub': 'Próximos eventos e novidades.',
+    'filter.all': 'Tudo',
+    'filter.past': 'Passados',
+    'help.title': 'Ajuda para a comunidade',
+    'help.desc': 'Necessita de alguma ajuda ou orientação relativo á área de informática, fale conosco',
+    'help.submit': 'Enviar pedido',
+    'help.sent': 'Pedido enviado',
+    'section.contactos.title': 'Contacte-nos',
+    'section.contactos.sub': 'Email, redes sociais e links úteis.',
+    'contact.email': 'Email',
+    'contact.instagram': 'Instagram',
+    'contact.linkedin': 'LinkedIn',
+    'contact.youtube': 'YouTube',
+    'contact.website': 'Website',
+    'links.universidade': 'Universidade',
+    'links.parceiros': 'Parceiros',
+    'links.eventos': 'Eventos',
+    'label.news': 'Notícia',
+    'label.upcoming': 'Brevemente',
+    'label.tba': 'Sem data anunciada',
+    'button.more': 'Saber mais',
+    'empty.past': 'Não existem eventos passados disponíveis.'
+  },
+  en: {
+    'nav.quem': 'Who we are',
+    'nav.fazemos': 'What we do',
+    'nav.sobre': 'About',
+    'nav.noticias': 'News',
+    'nav.contactos': 'Contact us',
+    'hero.title': 'Computer Engineering Student Society — Universidade Fernando Pessoa',
+    'section.fazemos.title': 'What we do',
+    'section.fazemos.sub': 'Workshops, hackathons, talks and community events.',
+    'features.workshops.title': 'Workshops',
+    'features.workshops.desc': 'Hands-on learning with current technologies.',
+    'features.hackathons.title': 'Hackathons',
+    'features.hackathons.desc': 'Intense challenges to build solutions.',
+    'features.talks.title': 'Talks',
+    'features.talks.desc': 'Guest speakers and knowledge sharing.',
+    'features.comunidade.title': 'Community',
+    'features.comunidade.desc': 'Social activities and networking.',
+    'section.sobre.title': 'About',
+    'section.sobre.text': 'Computer Engineering focuses on designing, developing and maintaining hardware and software systems. It powers the technology around us—from mobile apps and websites to enterprise systems, AI and robotics—covering programming, databases, networks, algorithms and computer architecture. Computer engineers turn complex ideas into working technological solutions.\n\nThis degree offers strong career advantages: high employability and resilience to crises, with constant demand for skilled professionals, often accompanied by competitive salaries.\n\nCareer diversity is a key strength as well, enabling specialization in areas like Cybersecurity, Game Development, Cloud Computing, Data Science or Artificial Intelligence. It is a modern profession that often allows remote work and flexible schedules. The skills are globally applicable, opening international opportunities and continuous work with cutting-edge technologies and innovation.',
+    'stats.empregabilidade': 'Employment rate',
+    'stats.parceiros': 'Partner companies',
+    'section.noticias.title': 'News',
+    'section.noticias.sub': 'Upcoming events and updates.',
+    'filter.all': 'All',
+    'filter.past': 'Past',
+    'help.title': 'Help for the community',
+    'help.desc': 'Need any help or guidance in IT? Talk to us',
+    'help.submit': 'Send request',
+    'help.sent': 'Request sent',
+    'section.contactos.title': 'Contact us',
+    'section.contactos.sub': 'Email, social media and useful links.',
+    'contact.email': 'Email',
+    'contact.instagram': 'Instagram',
+    'contact.linkedin': 'LinkedIn',
+    'contact.youtube': 'YouTube',
+    'contact.website': 'Website',
+    'links.universidade': 'University',
+    'links.parceiros': 'Partners',
+    'links.eventos': 'Events',
+    'label.news': 'News',
+    'label.upcoming': 'Upcoming',
+    'label.tba': 'Date to be announced',
+    'button.more': 'Learn more',
+    'empty.past': 'No past events available.'
+  }
+};
+
+function getLang() { return localStorage.getItem('lang') || 'pt'; }
+function t(key) { const lang = getLang(); return (i18n[lang] && i18n[lang][key]) || (i18n.pt[key] || key); }
+function applyLangToDom() { document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); const v = t(k); if (v) el.textContent = v; }); }
+function initLangToggle() {
+  const btn = document.getElementById('lang-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const next = getLang() === 'pt' ? 'en' : 'pt';
+    localStorage.setItem('lang', next);
+    applyLangToDom();
+    renderHomepage(events);
+  });
+}
+
 function sortHomepage(list) {
   const now = new Date();
   const rank = (x) => {
@@ -35,18 +142,20 @@ function sortHomepage(list) {
 }
 
 function formatDate(dateStr) {
-  if (!dateStr) return 'Sem data anunciada';
+  if (!dateStr) return t('label.tba');
   const d = new Date(dateStr);
-  return d.toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' });
+  const locale = getLang() === 'pt' ? 'pt-PT' : 'en-GB';
+  return d.toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
 function getMeta(ev) {
   const now = new Date();
-  if (ev.type === 'news') return `Notícia · ${formatDate(ev.date)}`;
-  if (!ev.date || ev.status === 'no_date') return 'Sem data anunciada';
+  if (ev.type === 'news') return `${t('label.news')} · ${formatDate(ev.date)}`;
+  if (!ev.date || ev.status === 'no_date') return t('label.tba');
   const d = new Date(ev.date);
-  if (d > now) return `Brevemente · ${ev.location}`;
-  return `${formatDate(ev.date)} · ${ev.location}`;
+  const loc = getLang() === 'en' ? (ev.location_en || ev.location) : ev.location;
+  if (d > now) return `${t('label.upcoming')} · ${loc}`;
+  return `${formatDate(ev.date)} · ${loc}`;
 }
 
 function renderEvents(list) {
@@ -71,7 +180,7 @@ function renderEvents(list) {
     if (ev.type === 'news') {
       const badge = document.createElement('span');
       badge.className = 'badge badge-news badge-overlay';
-      badge.textContent = 'Notícia';
+      badge.textContent = t('label.news');
       card.appendChild(badge);
     }
     const now = new Date();
@@ -81,24 +190,25 @@ function renderEvents(list) {
     if (!isNews && (isFuture || isNoDate)) {
       const statusBadge = document.createElement('span');
       statusBadge.className = `badge badge-overlay badge-lg ${isFuture ? 'badge-upcoming' : 'badge-tba'}`;
-      statusBadge.textContent = isFuture ? 'Brevemente' : 'Sem data anunciada';
+      statusBadge.textContent = isFuture ? t('label.upcoming') : t('label.tba');
       card.appendChild(statusBadge);
     }
     const h3 = document.createElement('h3');
     h3.className = 'news-title';
-    h3.textContent = ev.title;
+    h3.textContent = getLang() === 'en' ? (ev.title_en || ev.title) : ev.title;
     const meta = document.createElement('div');
     meta.className = 'news-meta';
     meta.textContent = getMeta(ev);
     const p = document.createElement('p');
-    const firstPara = (ev.desc || '').split(/\n\n+/)[0] || ev.desc || '';
+    const desc = getLang() === 'en' ? (ev.desc_en || ev.desc) : ev.desc;
+    const firstPara = (desc || '').split(/\n\n+/)[0] || desc || '';
     p.textContent = firstPara;
     const actions = document.createElement('div');
     actions.className = 'news-actions';
     const btn = document.createElement('a');
     btn.href = ev.type === 'news' ? (ev.external || '#') : `/eventos.html?id=${ev.id}`;
     btn.className = ev.type === 'news' ? 'link-news' : 'btn small';
-    btn.textContent = 'Saber mais';
+    btn.textContent = t('button.more');
     if (ev.type === 'news') { btn.target = '_blank'; btn.rel = 'noopener'; }
     actions.appendChild(btn);
     body.appendChild(h3);
@@ -120,14 +230,18 @@ function getHomepageNews() {
   const todayStr = `${yyyy}-${mm}-${dd}`;
   return [
     {
-      id: 'gemini', type: 'news', title: 'Gemini Pro Grátis', date: todayStr,
+      id: 'gemini', type: 'news', title: 'Gemini Pro Grátis',date: '2025-03-18',
+      title_en: 'Gemini Pro Free',
       cover: '/images/noticia_gemini.jpg', external: 'https://gemini.google/pt/students',
-      desc: 'A Google está a oferecer o Gemini Pro durante um ano para estudantes universitários utilizarem e explorarem nos estudos e aprendizagem. Mais informações no link abaixo.'
+      desc: 'A Google está a oferecer o Gemini Pro durante um ano para estudantes universitários utilizarem e explorarem nos estudos e aprendizagem. Mais informações no link abaixo.',
+      desc_en: 'Google is offering Gemini Pro free for one year for university students to use and explore in their studies and learning. More information at the link below.'
     },
     {
       id: 'nvidia-gr00t', type: 'news', title: 'Isaac GR00T N1: Robô humanoide', date: '2025-03-18',
+      title_en: 'Isaac GR00T N1: Humanoid Robot',
       cover: '/images/noticia_robo_neo.jpg', external: 'https://blog.nvidia.com.br/blog/nvidia-anuncia-o-isaac-gr00t-n1-primeiro-modelo-de-base-de-robos-humanoides-aberto-do-mundo-e-frameworks-de-simulacao/',
-      desc: 'A NVIDIA apresentou o Isaac GR00T N1, um modelo de base aberto e personalizável para robôs humanoides, com frameworks de simulação e o motor de física Newton em colaboração com o Google DeepMind e a Disney.'
+      desc: 'A NVIDIA apresentou o Isaac GR00T N1, um modelo de base aberto e personalizável para robôs humanoides, com frameworks de simulação e o motor de física Newton em colaboração com o Google DeepMind e a Disney.',
+      desc_en: 'NVIDIA introduced Isaac GR00T N1, an open and customizable base model for humanoid robots, with simulation frameworks and the Newton physics engine in collaboration with Google DeepMind and Disney.'
     }
   ];
 }
@@ -149,14 +263,14 @@ document.getElementById('filter-past').addEventListener('click', () => {
     root.innerHTML = '';
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    empty.textContent = 'Não existem eventos passados disponíveis.';
+    empty.textContent = t('empty.past');
     root.appendChild(empty);
     return;
   }
   renderEvents(past);
 });
 
-const sections = ['quem', 'fazemos', 'noticias', 'contactos'];
+const sections = ['quem', 'fazemos', 'sobre', 'noticias', 'contactos'];
 const sectionEls = sections.map(id => document.getElementById(id));
 window.addEventListener('scroll', () => {
   const y = window.scrollY + 90;
@@ -168,6 +282,7 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     const on = a.getAttribute('href') === active;
+    a.classList.toggle('active', on);
     a.style.fontWeight = on ? '700' : '400';
   });
 });
@@ -256,6 +371,89 @@ function initIconConstellations() {
 
 initIconConstellations();
 
+function initMonitorBackground() {
+  const el = document.querySelector('.pc-monitor');
+  if (!el) return;
+  const cands = [
+    '/images/tela_computador.png',
+    '/images/tela_computador.jpg',
+    '/images/tela_computador.jpeg',
+    'images/tela_computador.png',
+    'images/tela_computador.jpg',
+    'images/tela_computador.jpeg'
+  ];
+  let idx = 0;
+  function tryLoad() {
+    if (idx >= cands.length) return;
+    const u = cands[idx++];
+    const t = new Image();
+    t.onload = () => { el.style.backgroundImage = `url('${u}')`; };
+    t.onerror = tryLoad;
+    t.src = u;
+  }
+  tryLoad();
+}
+
+initMonitorBackground();
+
+function initCounters() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => io.observe(el));
+}
+
+function animateCount(el) {
+  const target = Number(el.getAttribute('data-target')) || 0;
+  const suffix = el.getAttribute('data-suffix') || '';
+  let start = 0;
+  const dur = 1400;
+  const t0 = performance.now();
+  function tick(now) {
+    const p = Math.min(1, (now - t0) / dur);
+    const val = Math.round(start + (target - start) * p);
+    el.textContent = suffix === '+' ? `${val}+` : `${val}${suffix}`;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+initCounters();
+
 // decorations removed
 
 // removed
+
+function initHelpForm() {
+  const form = document.getElementById('ajuda-form');
+  if (!form) return;
+  const textarea = form.querySelector('textarea');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = (textarea.value || '').trim();
+    if (!text) return;
+    const payload = { text, at: new Date().toISOString() };
+    let ok = false;
+    try {
+      const res = await fetch('/api/ajuda', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      ok = res.ok;
+    } catch {}
+    if (!ok) {
+      const saved = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]');
+      saved.push(payload);
+      localStorage.setItem('ajudaPedidos', JSON.stringify(saved));
+    }
+    form.reset();
+    const msg = document.createElement('div');
+    msg.className = 'link-pill';
+    msg.textContent = t('help.sent');
+    form.appendChild(msg);
+    setTimeout(() => msg.remove(), 2500);
+  });
+}
+
+initHelpForm();
+applyLangToDom();
+initLangToggle();
