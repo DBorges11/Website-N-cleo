@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard de Pedidos de Ajuda</title>
+    <link rel="stylesheet" href="/css/styles.css" /> <style>
+        /* Adicionar um CSS simples para a listagem */
+        body { padding-top: 80px; } 
+        .admin-container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .pedido-card { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .pedido-card p { margin: 0; }
+        .pedido-card .date { font-size: 0.8em; color: #666; margin-top: 10px; text-align: right; }
+        .loading { text-align: center; padding: 50px; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Pedidos de Ajuda à Comunidade</h1>
+        <div id="pedidos-list">
+            <p class="loading">A carregar pedidos...</p>
+        </div>
+    </div>
+    
+    <script src="/js/pedidos-view.js"></script>
+</body>
+</html>
