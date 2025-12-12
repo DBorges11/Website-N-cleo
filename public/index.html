@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Núcleo de Engenharia Informática</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/css/styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="#top">Núcleo EI</a>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" aria-label="Principal">
+          <ul>
+            <li><a href="/quem.html" data-i18n="nav.quem">Quem somos</a></li>
+            <li><a href="#fazemos" data-i18n="nav.fazemos">O que fazemos</a></li>
+            <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+            <li><a href="#noticias" data-i18n="nav.noticias">Notícias</a></li>
+            <li><a href="#contactos" class="cta" data-i18n="nav.contactos">Contacte-nos</a></li>
+            <li><button id="lang-toggle" class="btn small">PT/EN</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero hero-atrio">
+        <div class="container hero-center">
+          <h1 class="hero-title" data-i18n="hero.title">Nucleo De Engenharia Informatica da Universidade Fernando Pessoa</h1>
+        </div>
+        <div class="bg-animated"></div>
+      </section>
+
+      
+
+      <section id="fazemos" class="section alt">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll" data-i18n="section.fazemos.title">O que fazemos</h2>
+          <p class="section-subtitle reveal-on-scroll" data-i18n="section.fazemos.sub">Workshops, hackathons, talks e convívios académicos.</p>
+          <div class="grid features-grid">
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient" aria-hidden="true">👨‍💻</div>
+              <h3 data-i18n="features.workshops.title">Workshops</h3>
+              <p data-i18n="features.workshops.desc">Aprendizagem prática em tecnologias atuais.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient" aria-hidden="true">💻</div>
+              <h3 data-i18n="features.hackathons.title">Hackathons</h3>
+              <p data-i18n="features.hackathons.desc">Desafios intensos para criar soluções.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient" aria-hidden="true">🎤</div>
+              <h3 data-i18n="features.talks.title">Talks</h3>
+              <p data-i18n="features.talks.desc">Oradores convidados e partilha de conhecimento.</p>
+            </article>
+            <article class="feature reveal-on-scroll">
+              <div class="icon gradient" aria-hidden="true">🧑‍🤝‍🧑</div>
+              <h3 data-i18n="features.comunidade.title">Comunidade</h3>
+              <p data-i18n="features.comunidade.desc">Atividades sociais e networking.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="section">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll" data-i18n="section.sobre.title">Sobre</h2>
+          <p class="section-subtitle reveal-on-scroll" data-i18n="section.sobre.text">
+            
+            
+            A Engenharia Informática, ou Engenharia de Computadores, é um campo da engenharia dedicado ao projeto, desenvolvimento e manutenção de sistemas de hardware e software. É a área responsável pela criação de toda a tecnologia que nos rodeia, desde aplicações móveis e websites a sistemas de gestão empresarial, inteligência artificial e robótica, abrangendo conhecimentos de programação, bases de dados, redes de comunicação, algoritmos e arquitetura de computadores. O engenheiro informático é o profissional que transforma ideias complexas em soluções tecnológicas funcionais.
+
+            O curso de Engenharia Informática oferece vantagens significativas no mercado de trabalho atual. Uma das principais é a elevada empregabilidade, sendo uma das áreas com maior taxa de emprego e mais resiliente a crises, com uma procura constante por profissionais qualificados. Adicionalmente, os salários são geralmente competitivos devido à alta procura e à especialização técnica.
+
+            A diversidade de carreiras é outro ponto forte, pois a formação permite a especialização em áreas como Cibersegurança, Desenvolvimento de Jogos, Cloud Computing, Data Science ou Inteligência Artificial. Por ser uma profissão moderna, oferece muitas vezes a possibilidade de trabalho remoto e flexibilidade de horários, facilitando o equilíbrio entre a vida pessoal e profissional. Por fim, as competências adquiridas são universais, permitindo uma carreira global e a oportunidade de trabalhar continuamente com tecnologias de ponta e participar ativamente na inovação.
+          </p>
+          <div class="grid stats-grid">
+            <article class="stat-card reveal-on-scroll">
+              <div class="stat-value"><span class="counter" data-target="95" data-suffix="%">0%</span></div>
+              <div class="stat-label" data-i18n="stats.empregabilidade">Taxa de empregabilidade</div>
+            </article>
+            <article class="stat-card reveal-on-scroll">
+              <div class="stat-value"><span class="counter" data-target="20" data-suffix="+">0+</span></div>
+              <div class="stat-label" data-i18n="stats.parceiros">Empresas parceiras</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="noticias" class="section">
+        <div class="container">
+          <h2 class="section-title reveal-on-scroll" data-i18n="section.noticias.title">Notícias</h2>
+          <p class="section-subtitle reveal-on-scroll" data-i18n="section.noticias.sub">Próximos eventos e novidades.</p>
+          <div class="news-controls reveal-on-scroll">
+            <button class="btn small" id="filter-all" data-i18n="filter.all">Tudo</button>
+            <button class="btn small" id="filter-past" data-i18n="filter.past">Passados</button>
+          </div>
+          <div class="news-list" id="news-list"></div>
+        </div>
+      </section>
+
+      <section id="contactos" class="section alt">
+        <div class="container">
+          <div class="help-block reveal-on-scroll">
+            <h3 class="section-title" data-i18n="help.title">Ajuda para a comunidade</h3>
+            <p class="section-subtitle" data-i18n="help.desc">Necessita de alguma ajuda ou orientação relativo á area de informatica,fale conosco</p>
+            <form id="ajuda-form" class="ajuda-form">
+              <textarea id="ajuda-texto" name="ajuda-texto" placeholder="Escreva a sua necessidade (ex: necessito de comprar um computador até 600 euros que computador recomendam, necessito de um site sobre dentistas)" required></textarea>
+              <button type="submit" class="btn primary" data-i18n="help.submit">Enviar pedido</button>
+            </form>
+          </div>
+          <h2 class="section-title reveal-on-scroll" data-i18n="section.contactos.title">Contacte-nos</h2>
+          <p class="section-subtitle reveal-on-scroll" data-i18n="section.contactos.sub">Email, redes sociais e links úteis.</p>
+          <div class="contact-grid">
+            <a class="contact-card reveal-on-scroll" href="mailto:ni@ufp.edu.pt">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M2 6h20v12H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </span>
+              <span data-i18n="contact.email">Email</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://www.instagram.com/universidadefernandopessoa/" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" /></svg>
+              </span>
+              <span data-i18n="contact.instagram">Instagram</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://pt.linkedin.com/school/universidade-fernando-pessoa/" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="6" height="18" fill="currentColor"/><rect x="10" y="10" width="11" height="11" fill="currentColor"/><circle cx="6" cy="6" r="3" fill="currentColor"/></svg>
+              </span>
+              <span data-i18n="contact.linkedin">LinkedIn</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://www.youtube.com/@UniversidadeFernandoPessoaUFP" target="_blank" rel="noopener">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><polygon points="10,9 16,12 10,15" fill="#fff"/></svg>
+              </span>
+              <span data-i18n="contact.youtube">YouTube</span>
+            </a>
+            <a class="contact-card reveal-on-scroll" href="https://informatica.ufp.pt/" target="_blank" rel="noopener">
+              <span class="contact-icon">🌐</span>
+              <span data-i18n="contact.website">Website</span>
+            </a>
+          </div>
+
+          <div class="links-uteis reveal-on-scroll">
+            <a href="https://www.ufp.pt/" target="_blank" rel="noopener" class="link-pill" data-i18n="links.universidade">Universidade</a>
+            <a href="./parceiros.html" class="link-pill" data-i18n="links.parceiros">Parceiros</a>
+            <a href="./eventos.html" class="link-pill" data-i18n="links.eventos">Eventos</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© Núcleo de Engenharia Informática</p>
+      </div>
+    </footer>
+
+    <script type="module" src="../src/js/script.js"></script>
+  </body>
+  </html>
