@@ -1,0 +1,7 @@
+# Pastas de Build e Dependências
+dist/
+node_modules/
+
+# Logs e Cache
+*.log
+.DS_Store
