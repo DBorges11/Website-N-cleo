@@ -15,8 +15,14 @@ async function fetchPedidos() {
     const res = await fetch('/api/ajuda/list');
     if (res.ok) {
       const data = await res.json();
-      const pendentes = data.filter(p => p.status !== 'respondido');
-      const respondidos = data.filter(p => p.status === 'respondido');
+      let arr = Array.isArray(data) ? data : (data.items || data.data || data.results || []);
+      if (!Array.isArray(arr)) arr = [];
+      let pendentes = arr.filter(p => p.status !== 'respondido');
+      let respondidos = arr.filter(p => p.status === 'respondido');
+      const lp = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]');
+      const lr = JSON.parse(localStorage.getItem('ajudaRespostas') || '[]');
+      pendentes = mergeUnique([...lp, ...pendentes], 'id');
+      respondidos = mergeUnique([...lr, ...respondidos], 'id');
       return { pendentes, respondidos };
     }
   } catch {}
@@ -25,16 +31,32 @@ async function fetchPedidos() {
   return { pendentes, respondidos };
 }
 
+function mergeUnique(list, key) {
+  const seen = new Set();
+  return list.filter(item => {
+    const k = item[key] || JSON.stringify(item);
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
 function renderPedidos({ pendentes, respondidos }) {
   const lp = document.getElementById('lista-pendentes');
   const lr = document.getElementById('lista-respondidos');
   lp.innerHTML = ''; lr.innerHTML = '';
+  if (!pendentes.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Sem pedidos por responder.';
+    lp.appendChild(empty);
+  }
   pendentes.forEach(p => {
     const card = document.createElement('div');
     card.className = 'pedido-card reveal-on-scroll';
     const meta = document.createElement('div');
     meta.className = 'pedido-meta';
-    meta.textContent = new Date(p.at).toLocaleString('pt-PT');
+    meta.textContent = p.at ? new Date(p.at).toLocaleString('pt-PT') : '';
     const body = document.createElement('p');
     body.textContent = p.text;
     const actions = document.createElement('div');
@@ -53,12 +75,20 @@ function renderPedidos({ pendentes, respondidos }) {
     lp.appendChild(card);
     observer.observe(card);
   });
+  if (!respondidos.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Sem pedidos respondidos.';
+    lr.appendChild(empty);
+  }
   respondidos.forEach(p => {
     const card = document.createElement('div');
     card.className = 'pedido-card reveal-on-scroll';
     const meta = document.createElement('div');
     meta.className = 'pedido-meta';
-    meta.textContent = `${new Date(p.at).toLocaleString('pt-PT')} · Respondido em ${new Date(p.respondedAt).toLocaleString('pt-PT')}`;
+    const atStr = p.at ? new Date(p.at).toLocaleString('pt-PT') : '';
+    const rsStr = p.respondedAt ? new Date(p.respondedAt).toLocaleString('pt-PT') : '';
+    meta.textContent = `${atStr}${rsStr ? ` · Respondido em ${rsStr}` : ''}`;
     const body = document.createElement('p');
     body.textContent = p.text;
     const resp = document.createElement('p');
@@ -72,6 +102,8 @@ function renderPedidos({ pendentes, respondidos }) {
 }
 
 async function responderPedido(p, resposta) {
+  const msg = (resposta || '').trim();
+  if (!msg) return;
   const payload = { id: p.id || `hp_${Date.now()}`, response: resposta, respondedAt: new Date().toISOString() };
   let ok = false;
   try {
@@ -91,6 +123,11 @@ async function responderPedido(p, resposta) {
   }
   const lists = await fetchPedidos();
   renderPedidos(lists);
+  const toast = document.createElement('div');
+  toast.className = 'link-pill';
+  toast.textContent = 'Resposta registada';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2000);
 }
 
 (async function init() {
