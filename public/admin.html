@@ -1,33 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard de Pedidos de Ajuda</title>
-    <link rel="stylesheet" href="/css/styles.css" /> <style>
-        /* Adicionar um CSS simples para a listagem */
-        body { padding-top: 80px; } 
-        .admin-container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        .pedido-card { 
-            border: 1px solid #ccc; 
-            padding: 15px; 
-            margin-bottom: 15px; 
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .pedido-card p { margin: 0; }
-        .pedido-card .date { font-size: 0.8em; color: #666; margin-top: 10px; text-align: right; }
-        .loading { text-align: center; padding: 50px; }
+    <title>Admin — Pedidos da Comunidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      @media (max-width: 900px) { .admin-grid { grid-template-columns: 1fr; } }
+      .admin-col h3 { margin: 0 0 10px; }
+      .pedido-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 8px 24px rgba(12,16,32,0.06); display: grid; gap: 10px; }
+      .pedido-meta { color: var(--muted); font-size: 14px; }
+      .pedido-actions { display: grid; gap: 8px; }
+      .pedido-actions textarea { width: 100%; min-height: 80px; padding: 10px; border-radius: 12px; border: 1px solid var(--border); font: inherit; }
     </style>
-</head>
-<body>
-    <div class="admin-container">
-        <h1>Pedidos de Ajuda à Comunidade</h1>
-        <div id="pedidos-list">
-            <p class="loading">A carregar pedidos...</p>
+  </head>
+  <body>
+    <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="/index.html#top">Núcleo EI</a>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" aria-label="Principal">
+          <ul>
+            <li><a href="/quem.html" data-i18n="nav.quem">Quem somos</a></li>
+            <li><a href="/index.html#fazemos" data-i18n="nav.fazemos">O que fazemos</a></li>
+            <li><a href="/index.html#noticias" data-i18n="nav.noticias">Notícias</a></li>
+            <li><a href="/index.html#contactos" class="cta" data-i18n="nav.contactos">Contacte-nos</a></li>
+            <li><button id="lang-toggle" class="btn small">PT/EN</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Admin — Pedidos da Comunidade</h2>
+          <p class="section-subtitle">Gerir pedidos: por responder e respondidos.</p>
+
+          <div class="admin-grid">
+            <div class="admin-col">
+              <h3 class="section-title">Pedidos por responder</h3>
+              <div id="lista-pendentes" class="grid"></div>
+            </div>
+            <div class="admin-col">
+              <h3 class="section-title">Pedidos respondidos</h3>
+              <div id="lista-respondidos" class="grid"></div>
+            </div>
+          </div>
         </div>
-    </div>
-    
-    <script src="/js/pedidos-view.js"></script>
-</body>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© Núcleo de Engenharia Informática</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/admin.js"></script>
+  </body>
 </html>

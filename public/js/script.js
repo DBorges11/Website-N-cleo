@@ -434,7 +434,7 @@ function initHelpForm() {
     e.preventDefault();
     const text = (textarea.value || '').trim();
     if (!text) return;
-    const payload = { text, at: new Date().toISOString() };
+    const payload = { id: `hp_${Date.now()}`, text, at: new Date().toISOString(), status: 'pending' };
     let ok = false;
     try {
       const res = await fetch('/api/ajuda', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
