@@ -41,6 +41,7 @@ async function initQuemSomos() {
 
 function renderMembros(lista) {
     const teamGrid = document.getElementById('team-lista');
+    if (!teamGrid) return; // Garante que o elemento existe
     teamGrid.innerHTML = '';
 
     lista.forEach(membro => {
@@ -52,14 +53,18 @@ function renderMembros(lista) {
             <div class="card-body">
                 <h3>${membro.nome}</h3>
                 <p class="muted">${membro.cargo}</p>
-                <div class="social-links" style="margin-top: 10px; display: flex; gap: 10px;">
-                    <a href="${membro.linkedin_url}" target="_blank" class="link-pill" style="padding: 4px 8px; font-size: 12px;">LinkedIn</a>
-                    <a href="${membro.instagram_url}" target="_blank" class="link-pill" style="padding: 4px 8px; font-size: 12px;">Instagram</a>
+                <div class="social-links" style="margin-top: 12px; display: flex; gap: 15px; justify-content: center;">
+                    <a href="${membro.linkedin_url}" target="_blank" aria-label="LinkedIn" style="color: inherit; font-size: 1.2rem;">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="${membro.github_url}" target="_blank" aria-label="GitHub" style="color: inherit; font-size: 1.2rem;">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
                 </div>
             </div>
         `;
         
         teamGrid.appendChild(card);
-        observer.observe(card);
+        observer.observe(card); // Ativa a animação de scroll no novo card
     });
 }
