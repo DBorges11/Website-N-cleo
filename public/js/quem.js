@@ -8,13 +8,13 @@ const observer = new IntersectionObserver(entries => {
 document.addEventListener('DOMContentLoaded', initQuemSomos);
 
 // Função que gera dados fictícios (Placeholders)
-function getPlaceholders(count = 8) {
+function getPlaceholders(count = 20) {
     return Array.from({ length: count }, (_, i) => ({
         nome: `Membro ${i + 1}`,
         cargo: "Membro do Núcleo",
         foto_url: `https://picsum.photos/seed/${i + 100}/360/360`,
         linkedin_url: "https://linkedin.com",
-        instagram_url: "https://instagram.com"
+        github_url: "https://github.com"
     }));
 }
 
