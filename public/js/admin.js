@@ -1,135 +1,66 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const siteNav = document.querySelector('.site-nav');
-menuToggle.addEventListener('click', () => {
-  const open = siteNav.classList.toggle('open');
-  menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
+// admin.js
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+// 1. Sistema de Login Simples
+window.checkPass = function() {
+  const pass = document.getElementById('admin-pass').value;
+  if (pass === '1234') { // Altere para a sua password pretendida
+    document.getElementById('login-overlay').style.display = 'none';
+    localStorage.setItem('admin_auth', 'true');
+  } else {
+    alert('Palavra-passe incorreta!');
+  }
+};
 
+// Verificar se já está logado
+if (localStorage.getItem('admin_auth') === 'true') {
+  document.getElementById('login-overlay').style.display = 'none';
+}
+
+// 2. Navegação entre Secções
+window.showView = function(viewId) {
+  // Remover classes ativas
+  document.querySelectorAll('.admin-view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  
+  // Ativar nova vista
+  document.getElementById(`view-${viewId}`).classList.add('active');
+  event.currentTarget.classList.add('active');
+};
+
+// 3. Carregamento de Dados (Atualizado para contar estatísticas)
 async function fetchPedidos() {
   try {
     const res = await fetch('/api/ajuda/list');
+    let arr = [];
     if (res.ok) {
       const data = await res.json();
-      let arr = Array.isArray(data) ? data : (data.items || data.data || data.results || []);
-      if (!Array.isArray(arr)) arr = [];
-      let pendentes = arr.filter(p => p.status !== 'respondido');
-      let respondidos = arr.filter(p => p.status === 'respondido');
-      const lp = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]');
-      const lr = JSON.parse(localStorage.getItem('ajudaRespostas') || '[]');
-      pendentes = mergeUnique([...lp, ...pendentes], 'id');
-      respondidos = mergeUnique([...lr, ...respondidos], 'id');
-      return { pendentes, respondidos };
+      arr = Array.isArray(data) ? data : (data.items || []);
     }
-  } catch {}
-  const pendentes = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]');
-  const respondidos = JSON.parse(localStorage.getItem('ajudaRespostas') || '[]');
-  return { pendentes, respondidos };
-}
+    
+    // Merge com localStorage (mantendo a lógica do seu script original)
+    const lp = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]');
+    const lr = JSON.parse(localStorage.getItem('ajudaRespostas') || '[]');
+    
+    const todos = mergeUnique([...lp, ...lr, ...arr], 'id');
+    
+    const pendentes = todos.filter(p => p.status !== 'respondido');
+    const respondidos = todos.filter(p => p.status === 'respondido');
 
-function mergeUnique(list, key) {
-  const seen = new Set();
-  return list.filter(item => {
-    const k = item[key] || JSON.stringify(item);
-    if (seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  });
-}
+    // Atualizar contador no Perfil
+    const counterEl = document.getElementById('count-total');
+    if (counterEl) counterEl.textContent = respondidos.length;
 
-function renderPedidos({ pendentes, respondidos }) {
-  const lp = document.getElementById('lista-pendentes');
-  const lr = document.getElementById('lista-respondidos');
-  lp.innerHTML = ''; lr.innerHTML = '';
-  if (!pendentes.length) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.textContent = 'Sem pedidos por responder.';
-    lp.appendChild(empty);
+    return { pendentes, respondidos };
+  } catch (err) {
+    console.error(err);
+    return { pendentes: [], respondidos: [] };
   }
-  pendentes.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'pedido-card reveal-on-scroll';
-    const meta = document.createElement('div');
-    meta.className = 'pedido-meta';
-    meta.textContent = p.at ? new Date(p.at).toLocaleString('pt-PT') : '';
-    const body = document.createElement('p');
-    body.textContent = p.text;
-    const actions = document.createElement('div');
-    actions.className = 'pedido-actions';
-    const ta = document.createElement('textarea');
-    ta.placeholder = 'Escrever resposta...';
-    const btn = document.createElement('button');
-    btn.className = 'btn primary';
-    btn.textContent = 'Responder';
-    btn.addEventListener('click', () => responderPedido(p, ta.value));
-    actions.appendChild(ta);
-    actions.appendChild(btn);
-    card.appendChild(meta);
-    card.appendChild(body);
-    card.appendChild(actions);
-    lp.appendChild(card);
-    observer.observe(card);
-  });
-  if (!respondidos.length) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.textContent = 'Sem pedidos respondidos.';
-    lr.appendChild(empty);
-  }
-  respondidos.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'pedido-card reveal-on-scroll';
-    const meta = document.createElement('div');
-    meta.className = 'pedido-meta';
-    const atStr = p.at ? new Date(p.at).toLocaleString('pt-PT') : '';
-    const rsStr = p.respondedAt ? new Date(p.respondedAt).toLocaleString('pt-PT') : '';
-    meta.textContent = `${atStr}${rsStr ? ` · Respondido em ${rsStr}` : ''}`;
-    const body = document.createElement('p');
-    body.textContent = p.text;
-    const resp = document.createElement('p');
-    resp.textContent = `Resposta: ${p.response}`;
-    card.appendChild(meta);
-    card.appendChild(body);
-    card.appendChild(resp);
-    lr.appendChild(card);
-    observer.observe(card);
-  });
 }
 
-async function responderPedido(p, resposta) {
-  const msg = (resposta || '').trim();
-  if (!msg) return;
-  const payload = { id: p.id || `hp_${Date.now()}`, response: resposta, respondedAt: new Date().toISOString() };
-  let ok = false;
-  try {
-    const res = await fetch('/api/ajuda/respond', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    ok = res.ok;
-  } catch {}
-  if (!ok) {
-    const pend = JSON.parse(localStorage.getItem('ajudaPedidos') || '[]').filter(x => (x.id || '') !== (p.id || ''));
-    localStorage.setItem('ajudaPedidos', JSON.stringify(pend));
-    const resp = JSON.parse(localStorage.getItem('ajudaRespostas') || '[]');
-    resp.push({ ...p, ...payload, status: 'respondido' });
-    localStorage.setItem('ajudaRespostas', JSON.stringify(resp));
-  }
-  const lists = await fetchPedidos();
-  renderPedidos(lists);
-  const toast = document.createElement('div');
-  toast.className = 'link-pill';
-  toast.textContent = 'Resposta registada';
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 2000);
-}
+// ... manter funções mergeUnique, renderPedidos e responderPedido como no original ...
+// Nota: Certifique-se que renderPedidos aponta para os IDs corretos (lp e lr já definidos no novo HTML)
 
+// Inicialização
 (async function init() {
   const lists = await fetchPedidos();
   renderPedidos(lists);
