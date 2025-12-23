@@ -191,3 +191,41 @@ body {
 .quem-overlay { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; }
 .quem-title { color: #fff; font-size: clamp(22px, 4vw, 38px); margin: 0 0 8px; }
 .quem-sub { color: rgba(255,255,255,0.9); font-size: clamp(14px, 2.4vw, 18px); margin: 0; }
+
+/* Estilos para as redes sociais dos membros */
+.member-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.member-socials a {
+  color: var(--muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.member-socials a:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+/* Ajuste no card-body para acomodar os links */
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* No mobile, aumentar a área de clique */
+@media (max-width: 520px) {
+  .member-socials {
+    gap: 20px;
+  }
+  .member-socials svg {
+    width: 24px;
+    height: 24px;
+  }
+}
