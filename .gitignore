@@ -5,3 +5,11 @@ node_modules/
 # Logs e Cache
 *.log
 .DS_Store
+CLAUDE.md
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.*.local
+
