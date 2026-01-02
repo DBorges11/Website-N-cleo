@@ -65,18 +65,24 @@ function getMembrosReais() {
     {
       id: 'membro-4',
       name: 'Tiago Chousal',
-      cover: '/img/Tiago_Chousal .jpeg',
+      cover: '/images/tiago_chousal.jpeg',
       github: 'https://github.com/2024118263-gif',
       linkedin: 'https://www.linkedin.com/in/tiago-chousal-aa03ba389/'
     },
     {
       id: 'membro-5',
       name: 'Diogo Borges',
-      cover: '/img/Diogo_Borges.jpeg',
+      cover: '/images/diogo_borges.jpeg',
       github: 'https://github.com/DBorges11',
       linkedin: 'https://www.linkedin.com/in/diogo-borges-335516393/'
     },
-    
+    {
+      id: 'membro-6',
+      name: 'Pedro Ramos ',
+      cover: 'https://picsum.photos/seed/pedro/360/360',
+      github: 'https://github.com/Ricardo132-maker',
+      linkedin: 'https://www.linkedin.com'
+    },
   ];
 }
 
