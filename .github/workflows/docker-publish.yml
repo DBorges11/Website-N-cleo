@@ -37,10 +37,19 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+            # 1. Se for uma Tag (ex: 1.01), gera: "1.01"
+            type=ref,event=tag
+            # 2. Se for uma Tag, gera também: "1.01-a1b2c3d" (O que o professor quer)
+            type=ref,event=tag,suffix=-{{sha}}
+            
+            # 3. Se for um PR, gera: "pr-6-a1b2c3d" (Seguro e rastreável)
+            type=ref,event=pr,suffix=-{{sha}}
+            
+            # 4. Se for branch main, gera: "main-a1b2c3d"
+            type=ref,event=branch,suffix=-{{sha}}
+            
+            # 5. Atualiza a tag "latest" apenas se for uma release
+            type=raw,value=latest,enable=${{ github.ref_type == 'tag' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
