@@ -44,83 +44,104 @@ function getMembrosReais() {
     {
       id: 'membro-1',
       name: 'Diogo Vicente',
-      cover: 'https://picsum.photos/seed/joao/360/360', 
+      cover: '/images/Diogo Vicente.jpeg', 
       github: 'https://github.com/DiogoVicente8',
       linkedin: 'https://www.linkedin.com/in/diogo-vicente-b2202b31a/'
     },
     {
       id: 'membro-2',
       name: 'Pedro Rodrigues',
-      cover: 'https://picsum.photos/seed/maria/360/360',
+      cover: '/images/Pedro Rodrigues.jpeg',
       github: 'https://github.com/PedroRodrigues006',
       linkedin: 'https://www.linkedin.com/in/pedro-rodrigues-128b073a1/'
     },
     {
       id: 'membro-3',
       name: 'Guilherme Taipa',
-      cover: 'https://picsum.photos/seed/pedro/360/360',
+      cover: '/images/Guilherme Taipa.jpeg',
       github: 'https://github.com/2024118263-gif',
       linkedin: 'https://www.linkedin.com/in/guilherme-taipa-3b88673a3/'
     },
     {
       id: 'membro-4',
       name: 'Tiago Chousal',
-      cover: '/images/tiago_chousal.jpeg',
+      cover: '/images/tiago-chousal.png',
       github: 'https://github.com/2024118263-gif',
       linkedin: 'https://www.linkedin.com/in/tiago-chousal-aa03ba389/'
     },
     {
       id: 'membro-5',
       name: 'Diogo Borges',
-      cover: '/images/diogo_borges.jpeg',
+      cover: '/images/Diogo Borges.jpeg',
       github: 'https://github.com/DBorges11',
       linkedin: 'https://www.linkedin.com/in/diogo-borges-335516393/'
     },
-    {
+    /* {
       id: 'membro-6',
       name: 'Pedro Ramos ',
       cover: 'https://picsum.photos/seed/pedro/360/360',
       github: 'https://github.com/Ricardo132-maker',
       linkedin: 'https://www.linkedin.com'
-    },
-    {
+    }, */
+    /* {
       id: 'membro-7',
       name: 'João Reis',
       cover: 'https://picsum.photos/seed/pedro/360/360',
       github: 'https://github.com/joaoreis2121',
       linkedin: 'http://linkedin.com/in/joão-reis-50549a38a'
-    },
-    {
+    }, */
+    /* {
       id: 'membro-8',
       name: 'Tiago Durães',
       cover: 'https://picsum.photos/seed/pedro/360/360',
       github: 'https://github.com/IDuraess',
-    },
-    {
+    }, */
+    /* {
       id: 'membro-9',
       name: 'Rayssa Santos',
-      cover: 'https://picsum.photos/seed/pedro/360/360',
+      cover: '/images/Rayssa Santos.png',
       github: 'https://github.com/rcs-raysantos ',
-    },
-    {
+    }, */
+    /* {
       id: 'membro-10',
       name: 'Filipe Silva',
       cover: 'https://picsum.photos/seed/pedro/360/360',
       github: 'https://github.com/FilipeSilva23',
-    },
-    {
+    },*/
+    /* {
       id: 'membro-11',
       name: 'Winnie Martins',
-      cover: 'https://picsum.photos/seed/pedro/360/360',
+      cover: '/images/Winnie Martins.png',
       github: 'https://github.com/ViniMartins114158',
-    },
+    }, */
     {
       id: 'membro-12',
       name: 'Leonardo Cunha',
-      cover: 'https://picsum.photos/seed/pedro/360/360',
+      cover: '/images/Leonardo Cunha.jpeg',
       github: 'https://github.com/2025111409-del',
       linkedin:'https://www.linkedin.com/in/leonardo-cunha-moura-73b1293a6?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BEhLAOItzSxOHKD5r2Bo3Qg%3D%3D'
     },
+    /* {
+      id: 'membro-13',
+      name: 'Diogo Oliveira',
+      cover: 'https://picsum.photos/seed/pedro/360/360',
+      github: 'https://github.com/DiogoOliveira04ufp',
+    }, */
+    {
+      id: 'membro-14',
+      name: 'Ricardo Pereira',
+      cover: '/images/Ricardo Pereira.jpeg',
+      github: ' https://github.com/RicPerUFP',
+      linkedin:'https://www.linkedin.com/in/ricardo-pereira-b9321836a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+    },
+    {
+      id: 'membro-15',
+      name: 'Robi Henrquez',
+      cover: '/images/Robi Henrquez.jpeg',
+      github: ' https://github.com/Marcelrobi1https://github.com/Marcelrobi1',
+      linkedin:'https://www.linkedin.com/in/robi-henrquez-32829a16a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' 
+    },
+
   ];
 }
 

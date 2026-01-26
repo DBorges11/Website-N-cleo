@@ -519,6 +519,7 @@ async function enviarPedido() {
     const texto = document.getElementById('ajuda-texto').value;
     const email = document.getElementById('ajuda-email').value;
     const feedbackBox = document.getElementById('form-feedback'); // Selecionar a caixa de mensagem
+    const SITE_KEY = '6Lem6VEsAAAAAKM7iuKJFV_SaciPvuamAFt7dDqi';
     
     // Função auxiliar para mostrar mensagens
     const mostrarMensagem = (msg, tipo) => {
@@ -530,11 +531,6 @@ async function enviarPedido() {
     // Limpar mensagens anteriores
     feedbackBox.style.display = 'none';
 
-    // Verifica se o reCAPTCHA existe na página antes de chamar
-    let captchaToken = '';
-    if (typeof grecaptcha !== 'undefined') {
-        captchaToken = grecaptcha.getResponse();
-    }
 
     // Validações
     if (!texto.trim()) return mostrarMensagem('Por favor, descreva o seu pedido.', 'error');
@@ -549,13 +545,28 @@ async function enviarPedido() {
     btn.disabled = true;
 
     try {
+        // --- Lógica reCAPTCHA v3 ---
+        const token = await new Promise((resolve) => {
+             // Garante que o grecaptcha está carregado
+             if (typeof grecaptcha === 'undefined') {
+                 console.error('reCAPTCHA não carregado');
+                 resolve(null);
+                 return;
+             }
+             grecaptcha.ready(() => {
+                 grecaptcha.execute(SITE_KEY, { action: 'submit' }).then(resolve);
+             });
+        });
+        
+        if (!token) throw new Error('Falha ao gerar token de segurança.');
+
         const res = await fetch('/api/ajuda', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 text: texto, 
                 email: email, 
-                captcha: captchaToken 
+                captcha: token // Envia o token invisível
             })
         });
 
@@ -564,16 +575,14 @@ async function enviarPedido() {
         if (res.ok) {
             mostrarMensagem('Pedido enviado com sucesso! Irá receber a resposta no email.', 'success');
             document.getElementById('ajuda-form').reset();
-            if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
         } else {
             mostrarMensagem('Erro: ' + (data.message || 'Ocorreu um problema.'), 'error');
         }
     } catch (err) {
         console.error(err);
-        mostrarMensagem('Erro de conexão ao servidor.', 'error');
+        mostrarMensagem('Erro de conexão ou verificação.', 'error');
     } finally {
         btn.innerText = textoOriginal;
         btn.disabled = false;
     }
 }
-

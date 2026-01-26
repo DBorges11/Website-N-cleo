@@ -2,30 +2,47 @@
 
 // 1. Verificação de Login e Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Verificar Autenticação Existente
     const auth = localStorage.getItem('admin_auth');
     const overlay = document.getElementById('login-overlay');
     
     if (auth === 'true') {
         if (overlay) overlay.style.display = 'none';
-        loadAdminData(); // Carrega perfil do utilizador 1 da Neon
+        loadAdminData(); 
     } else {
         if (overlay) overlay.style.display = 'flex'; 
+    }
+    
+    // 2. Configurar o Botão de Login (Listener em vez de onclick)
+    const btnLogin = document.getElementById('btn-login');
+    const inputPass = document.getElementById('admin-pass');
+
+    // Função de verificação
+    const performLogin = () => {
+        const pass = inputPass.value;
+        if (pass === '1234') { 
+            if (overlay) overlay.style.display = 'none';
+            localStorage.setItem('admin_auth', 'true');
+            loadAdminData();
+        } else {
+            alert('Palavra-passe incorreta!');
+        }
+    };
+
+    if (btnLogin) {
+        btnLogin.addEventListener('click', performLogin);
+    }
+
+    // Permitir login com tecla ENTER
+    if (inputPass) {
+        inputPass.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performLogin();
+        });
     }
     
     // Carregar pedidos iniciais
     fetchPedidos().then(lists => renderPedidos(lists));
 });
-
-window.checkPass = function() {
-    const pass = document.getElementById('admin-pass').value;
-    if (pass === '1234') { 
-        document.getElementById('login-overlay').style.display = 'none';
-        localStorage.setItem('admin_auth', 'true');
-        loadAdminData();
-    } else {
-        alert('Palavra-passe incorreta!');
-    }
-};
 
 // 2. Navegação Lateral
 window.showView = function(viewId, event) {
