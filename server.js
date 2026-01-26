@@ -82,8 +82,9 @@ app.post('/api/ajuda', async (req, res) => {
         const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${captcha}`;
         const googleRes = await fetch(verifyUrl, { method: 'POST' });
         const googleData = await googleRes.json();
-        if (!googleData.success) {
-            return res.status(400).json({ message: 'Falha na verificação de robô (ReCaptcha).' });
+        if (!googleData.success || googleData.score < 0.5) {
+            console.warn('Bot bloqueado pelo Recaptcha:', googleData);
+            return res.status(400).json({ message: 'Atividade suspeita detetada.' });
         }
     }
 
@@ -223,6 +224,14 @@ app.use(express.static(join(__dirname, 'dist')));
 
 // Fallback para SPA (Single Page Application) ou rotas não encontradas
 app.get('*', (req, res) => {
+  // VERIFICAÇÃO NOVA:
+  // Se o pedido for para uma API ou ficheiro estático (.js, .css, .png) e não existir,
+  // devolvemos Erro 404 em vez de enviarmos o index.html por engano.
+  if (req.url.startsWith('/api/') || req.url.match(/\.(js|css|png|jpg|ico|json)$/)) {
+    return res.status(404).send('Not found');
+  }
+  
+  // Só devolve o HTML se for navegação real
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 
